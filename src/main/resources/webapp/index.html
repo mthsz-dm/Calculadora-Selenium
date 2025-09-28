@@ -1,47 +1,81 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="UTF-8">
     <title>Calculadora Web</title>
     <style>
-        body { font-family: Arial; display: flex; justify-content: center; align-items: center; height: 100vh; background: #f0f0f0; }
-        .calculadora { background: white; padding: 20px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.3); }
-        input, select, button { margin: 5px; padding: 10px; font-size: 16px; }
-        button { background: #4facfe; color: white; border: none; cursor: pointer; }
-        button:hover { background: #00f2fe; }
+        body {
+            font-family: Arial;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: #f0f0f0;
+        }
+
+        .calculadora {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        input,
+        select,
+        button {
+            margin: 5px;
+            padding: 10px;
+            font-size: 16px;
+        }
+
+        button {
+            background: #4facfe;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #00f2fe;
+        }
     </style>
 </head>
-<body>
-<div class="calculadora">
-    <h1>Calculadora</h1>
-    <form id="calcForm" onsubmit="return false;">
-        <input type="number" name="val1" placeholder="Valor 1" step="any" required>
-        <input type="number" name="val2" placeholder="Valor 2" step="any" required>
-        <select name="op">
-            <option value="soma">+</option>
-            <option value="sub">-</option>
-            <option value="mult">*</option>
-            <option value="div">/</option>
-        </select>
-        <button type="button" onclick="calcular()">Calcular</button>
-    </form>
-    <div id="resultado"></div>
-</div>
 
-<script>
-function calcular() {
-    let val1 = parseFloat(document.querySelector('input[name="val1"]').value);
-    let val2 = parseFloat(document.querySelector('input[name="val2"]').value);
-    let op = document.querySelector('select[name="op"]').value;
-    let res;
-    switch(op) {
-        case "soma": res = val1 + val2; break;
-        case "sub": res = val1 - val2; break;
-        case "mult": res = val1 * val2; break;
-        case "div": res = val1 / val2; break;
-    }
-    document.getElementById("resultado").textContent = "Resultado: " + res;
-}
-</script>
+<body>
+    <div class="calculadora">
+        <h1>Calculadora</h1>
+        <form id="calcForm" onsubmit="return false;">
+            <input type="number" name="val1" placeholder="Valor 1" step="any" required>
+            <input type="number" name="val2" placeholder="Valor 2" step="any" required>
+            <select name="op">
+                <option value="soma">+</option>
+                <option value="sub">-</option>
+                <option value="mult">*</option>
+                <option value="div">/</option>
+                <option value="pot">^</option>
+            </select>
+            <button type="button" onclick="calcular()">Calcular</button>
+        </form>
+        <div id="resultado"></div>
+    </div>
+
+    <script>
+        function calcular() {
+            let val1 = parseFloat(document.querySelector('input[name="val1"]').value);
+            let val2 = parseFloat(document.querySelector('input[name="val2"]').value);
+            let op = document.querySelector('select[name="op"]').value;
+            let res;
+            switch (op) {
+                case "soma": res = val1 + val2; break;
+                case "sub": res = val1 - val2; break;
+                case "mult": res = val1 * val2; break;
+                case "div": res = val1 / val2; break;
+                case "pot": res = Math.pow(val1, val2); break;
+            }
+            document.getElementById("resultado").textContent = "Resultado: " + res;
+        }
+    </script>
 </body>
+
 </html>

@@ -14,10 +14,12 @@ import java.time.Duration;
 public class CalculadoraSeleniumTest {
 
     public static void main(String[] args) {
-        System.setProperty("webdriver.chrome.driver", "C:\\drivers\\chromedriver.exe");
+        // System.setProperty("webdriver.chrome.driver",
+        // "C:\\drivers\\chromedriver.exe");
         WebDriver driver = new ChromeDriver();
 
         try {
+            // O Path mudda para cada um
             File file = new File("src/main/resources/webapp/index.html");
             driver.get(file.toURI().toString());
 
@@ -26,13 +28,15 @@ public class CalculadoraSeleniumTest {
             testarOperacao(driver, "10", "5", "sub", "Resultado: 5");
             testarOperacao(driver, "10", "5", "mult", "Resultado: 20");
             testarOperacao(driver, "10", "5", "div", "Resultado: 2");
+            testarOperacao(driver, "2", "2", "pot", "Resultado: 4");
 
         } finally {
             driver.quit();
         }
     }
 
-    private static void testarOperacao(WebDriver driver, String val1, String val2, String op, String resultadoEsperado) {
+    private static void testarOperacao(WebDriver driver, String val1, String val2, String op,
+            String resultadoEsperado) {
         // Preencher valores
         driver.findElement(By.name("val1")).clear();
         driver.findElement(By.name("val1")).sendKeys(val1);
@@ -55,7 +59,8 @@ public class CalculadoraSeleniumTest {
         if (resultado.getText().equals(resultadoEsperado)) {
             System.out.println("Teste " + op + " passou!");
         } else {
-            System.out.println("Teste " + op + " falhou! Resultado esperado: " + resultadoEsperado + ", obtido: " + resultado.getText());
+            System.out.println("Teste " + op + " falhou! Resultado esperado: " + resultadoEsperado + ", obtido: "
+                    + resultado.getText());
         }
     }
 }
