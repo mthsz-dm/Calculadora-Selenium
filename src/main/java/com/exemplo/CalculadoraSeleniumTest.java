@@ -29,6 +29,7 @@ public class CalculadoraSeleniumTest {
             testarOperacao(driver, "10", "5", "mult", "Resultado: 20");
             testarOperacao(driver, "10", "5", "div", "Resultado: 2");
             testarOperacao(driver, "2", "2", "pot", "Resultado: 4");
+            testarOperacao(driver, "0", "5", "mult", "Resultado: 0");
 
         } finally {
             driver.quit();
