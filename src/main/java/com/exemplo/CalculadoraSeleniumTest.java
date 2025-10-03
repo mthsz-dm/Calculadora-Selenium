@@ -14,13 +14,12 @@ import java.time.Duration;
 public class CalculadoraSeleniumTest {
 
     public static void main(String[] args) {
-        // System.setProperty("webdriver.chrome.driver",
-        // "C:\\drivers\\chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver", "C:/Users/olavo/Desktop/chromedriver-win64/chromedriver.exe");
         WebDriver driver = new ChromeDriver();
 
         try {
-            // O Path mudda para cada um
-            File file = new File("src/main/resources/webapp/index.html");
+            // O Path muda para cada um
+            File file = new File("C:/Users/olavo/Desktop/puc/2025-2/teste-de-software/Calculadora-Selenium/target/classes/webapp/index.html");
             driver.get(file.toURI().toString());
 
             // Testes das operações
@@ -30,6 +29,7 @@ public class CalculadoraSeleniumTest {
             testarOperacao(driver, "10", "5", "div", "Resultado: 2");
             testarOperacao(driver, "2", "2", "pot", "Resultado: 4");
             testarOperacao(driver, "0", "5", "mult", "Resultado: 0");
+            testarOperacao(driver, "0", "10", "div", "Resultado: 0");
 
         } finally {
             driver.quit();
