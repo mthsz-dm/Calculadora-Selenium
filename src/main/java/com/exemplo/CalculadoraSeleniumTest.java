@@ -21,21 +21,20 @@ public class CalculadoraSeleniumTest {
             driver.get(file.toURI().toString());
 
             // Testes das operações
-            testarOperacao(driver, "2", "2", "soma", "Resultado: 4");
-            testarOperacao(driver, "6", "3", "sub", "Resultado: 3");
-            testarOperacao(driver, "5", "2", "mult", "Resultado: 10");
-            testarOperacao(driver, "8", "2", "div", "Resultado: 4");
-            testarOperacao(driver, "7", "0", "div", "Resultado: Erro: Divisão por zero");
-            testarOperacao(driver, "a", "b", "mult", "Resultado: Erro: Entrada inválida");
-            testarOperacao(driver, "", "", "soma", "Resultado: Erro: Entrada inválida");
+            Soma(driver, "2", "2", "Resultado: 4");
+            Subtracao(driver, "6", "3", "Resultado: 3");
+            Multiplicacao(driver, "5", "2", "Resultado: 10");
+            Divisao(driver, "8", "2", "Resultado: 4");
+            Divisao(driver, "7", "0", "Resultado: Erro: Divisão por zero");
+            Multiplicacao(driver, "a", "b", "Resultado: Erro: Entrada inválida");
+            Soma(driver, "", "", "Resultado: Erro: Entrada inválida");
 
         } finally {
             driver.quit();
         }
     }
 
-    private static void testarOperacao(WebDriver driver, String val1, String val2, String op,
-            String resultadoEsperado) {
+        private static void executarTeste(WebDriver driver, String val1, String val2, String op, String resultadoEsperado) {
         // Valores
         driver.findElement(By.name("val1")).clear();
         driver.findElement(By.name("val1")).sendKeys(val1);
@@ -58,5 +57,21 @@ public class CalculadoraSeleniumTest {
             System.out.println("Teste " + op + " falhou! Resultado esperado: " + resultadoEsperado + ", obtido: "
                     + resultado.getText());
         }
+    }
+
+    private static void Soma(WebDriver driver, String val1, String val2, String resultadoEsperado) {
+        executarTeste(driver, val1, val2, "soma", resultadoEsperado);
+    }
+
+    private static void Subtracao(WebDriver driver, String val1, String val2, String resultadoEsperado) {
+        executarTeste(driver, val1, val2, "sub", resultadoEsperado);
+    }
+
+    private static void Divisao(WebDriver driver, String val1, String val2, String resultadoEsperado) {
+        executarTeste(driver, val1, val2, "mult", resultadoEsperado);
+    }
+
+    private static void Multiplicacao(WebDriver driver, String val1, String val2, String resultadoEsperado) {
+        executarTeste(driver, val1, val2, "div", resultadoEsperado);
     }
 }
