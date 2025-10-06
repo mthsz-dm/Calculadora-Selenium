@@ -28,13 +28,14 @@ public class CalculadoraSeleniumTest {
             Divisao(driver, "7", "0", "Resultado: Erro: Divisão por zero");
             Multiplicacao(driver, "a", "b", "Resultado: Erro: Entrada inválida");
             Soma(driver, "", "", "Resultado: Erro: Entrada inválida");
+            Potencia(driver, "2", "3", "Resultado: 8");
 
         } finally {
             driver.quit();
         }
     }
 
-        private static void executarTeste(WebDriver driver, String val1, String val2, String op, String resultadoEsperado) {
+    private static void executarTeste(WebDriver driver, String val1, String val2, String op, String resultadoEsperado) {
         // Valores
         driver.findElement(By.name("val1")).clear();
         driver.findElement(By.name("val1")).sendKeys(val1);
@@ -52,7 +53,7 @@ public class CalculadoraSeleniumTest {
         WebElement resultado = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("resultado")));
 
         if (resultado.getText().equals(resultadoEsperado)) {
-            System.out.println("Teste " + op + " passou!, obtido: "+ resultado.getText());
+            System.out.println("Teste " + op + " passou!, obtido: " + resultado.getText());
         } else {
             System.out.println("Teste " + op + " falhou! Resultado esperado: " + resultadoEsperado + ", obtido: "
                     + resultado.getText());
@@ -73,5 +74,9 @@ public class CalculadoraSeleniumTest {
 
     private static void Multiplicacao(WebDriver driver, String val1, String val2, String resultadoEsperado) {
         executarTeste(driver, val1, val2, "div", resultadoEsperado);
+    }
+
+    private static void Potencia(WebDriver driver, String val1, String val2, String resultadoEsperado) {
+        executarTeste(driver, val1, val2, "pot", resultadoEsperado);
     }
 }
