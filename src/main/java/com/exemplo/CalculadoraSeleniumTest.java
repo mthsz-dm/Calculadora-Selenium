@@ -29,6 +29,7 @@ public class CalculadoraSeleniumTest {
             Multiplicacao(driver, "a", "b", "Resultado: Erro: Entrada inválida");
             Soma(driver, "", "", "Resultado: Erro: Entrada inválida");
             Potencia(driver, "2", "3", "Resultado: 8");
+            SubtracaoNegativa(driver, "5", "10", "Resultado: -5");
 
         } finally {
             driver.quit();
@@ -78,5 +79,9 @@ public class CalculadoraSeleniumTest {
 
     private static void Potencia(WebDriver driver, String val1, String val2, String resultadoEsperado) {
         executarTeste(driver, val1, val2, "pot", resultadoEsperado);
+    }
+
+    private static void SubtracaoNegativa(WebDriver driver, String val1, String val2, String resultadoEsperado) {
+        executarTeste(driver, val1, val2, "sub", resultadoEsperado);
     }
 }
